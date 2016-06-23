@@ -1,0 +1,7 @@
+---
+
+# show debug messages (defaults to 0 - disable)
+debug: 0
+
+git_version_command: git log -n 1 --pretty=format:'%ai'
+

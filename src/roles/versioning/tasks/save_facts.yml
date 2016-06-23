@@ -1,0 +1,19 @@
+---
+
+- name: create local facts.d
+  file: path=/etc/ansible/facts.d state=directory mode=0755
+
+- include: get_git_version.yml
+
+- name: save local facts
+  template: src=fact.j2 dest='/etc/ansible/facts.d/{{key|mandatory}}.fact'
+  vars:
+    data: { 'version': '{{version|mandatory}}', 'last_run': '{{ansible_date_time.iso8601}}', 'user_data': '{{user_data|default({})}}' }
+
+- name: reload local facts
+  setup: { filter: 'ansible_local' }
+
+- name: dump local facts
+  debug: var=ansible_local
+  when: debug == 1
+

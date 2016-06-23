@@ -1,0 +1,10 @@
+version: '2'
+services:
+  ansible:
+    build: ansible
+    depends_on:
+      - host1
+    volumes:
+      - ./src:/mnt/src
+  host1:
+    build: host1

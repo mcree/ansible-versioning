@@ -1,0 +1,12 @@
+---
+
+- block:
+  - debug: var=ansible_local
+    ignore_errors: yes  # may be undefined
+  - debug: msg='got version {{ ansible_local.test.version }}'
+    ignore_errors: yes  # may be undefined
+  when: debug == 1
+
+- name: trigger save version
+  command: /bin/true
+  notify: save version

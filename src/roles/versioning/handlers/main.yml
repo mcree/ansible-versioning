@@ -1,0 +1,5 @@
+---
+
+- name: save version
+  include: save_facts.yml
+

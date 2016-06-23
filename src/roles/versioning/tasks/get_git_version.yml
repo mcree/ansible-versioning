@@ -1,0 +1,13 @@
+---
+
+- name: git autocommit
+  command: git commit -m 'autocommit'
+  delegate_to: 127.0.0.1
+  ignore_errors: on # happens on empty commit
+
+- name: get git version
+  command: '{{git_version_command}}'
+  delegate_to: 127.0.0.1
+  register: git_out
+
+- set_fact: version='{{git_out.stdout}}'

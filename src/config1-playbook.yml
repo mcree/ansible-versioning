@@ -1,0 +1,26 @@
+---
+
+- name: test playbook
+  hosts: all
+
+  roles:
+#    - { role: versioning, key: 'test', version: '1.1', user_data: {'a': 'b', 'c': 'd'} }
+    - role: versioning
+      debug: 1  # set to 1 for debug info
+      key: test
+      version: '1.1'
+      user_data:
+        a: '{{playbook_dir}}'
+        c: 'd'
+
+  tasks:
+    - name: do some work
+      command: /bin/true
+    - name: do some more work
+      command: /bin/true
+#    - command: bash -c set
+#      delegate_to: 127.0.0.1
+#      register: ddd
+#    - debug: var=ddd
+
+
